@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Download blogData.json</title>
+  </head>
+  <body>
+    <h1>Click below to download blogData.json</h1>
+    <button onclick="downloadJSON()">Download JSON</button>
+
+    <script>
+      async function downloadJSON() {
+        const res = await fetch("https://jsonfakery.com/blogs");
+        const allPosts = await res.json();
+        const first15 = allPosts.slice(0, 15);
+        const blob = new Blob([JSON.stringify(first15, null, 2)], { type: "application/json" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "blogData.json";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    </script>
+  </body>
+</html>
