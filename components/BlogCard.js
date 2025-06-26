@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import BlogAuthor from '@/components/BlogAuthor';
 
 export default function BlogCard({ post, showButton = true, showContent = false }) {
   return (
     <div className="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+
       <div className="ratio ratio-16x9">
         <Image
           src={post?.featured_image}
@@ -33,9 +35,9 @@ export default function BlogCard({ post, showButton = true, showContent = false 
         />
         )}
 
-      <div className="card-footer text-muted">
-        {new Date(post.created_at).toLocaleDateString()} by {post.user?.first_name}
-      </div>
+        <BlogAuthor user={post?.user} date={post.created_at} />
+
+
     </div>
   );
 }
