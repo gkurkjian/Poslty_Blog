@@ -1,18 +1,21 @@
-import { Navbar, Container, Nav} from 'react-bootstrap';
+'use client';
+
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import Link from 'next/link';
 
 export default function CustomNavbar() {
-    return (
-    <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+  return (
+    <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand as={Link} href="/">Home Page</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          {/* <Nav className="ms-auto"></Nav> */}
+        <Link href="/" className="navbar-brand">Home Page</Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Link href="/about" className="nav-link">About</Link>
+            <Link href="/blog" className="nav-link">Blog</Link>
+          </Nav>
         </Navbar.Collapse>
-        <Navbar.Brand as={Link} href="/about">About</Navbar.Brand>
-        <Navbar.Brand as={Link} href="/posts">Posts</Navbar.Brand>
       </Container>
     </Navbar>
-  )
+  );
 }
