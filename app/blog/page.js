@@ -1,22 +1,18 @@
-// app/blog/page.js
 'use client';
 import blogData from '@/data/blogData.json';
-import Link from 'next/link';
+import BlogCard from '@/components/BlogCard';
 
 export default function BlogPage() {
   return (
-    <main style={{ padding: '2rem' }}>
-      <h1>Blog Home</h1>
-      <ul style={{ marginTop: '1rem' }}>
+    <main className="container py-4">
+      <h1 className="mb-4">Blog Home</h1>
+      <div className="row g-4">
         {blogData.map((post) => (
-          <li key={post.id} style={{ marginBottom: '1rem' }}>
-            <Link href={`/blog/${post.id}`}>
-              <strong>{post.title}</strong>
-            </Link>
-            <p>{post.subtitle}</p>
-          </li>
+          <div key={post.id} className="col-12 col-sm-6 col-lg-4">
+            <BlogCard post={post} />
+          </div>
         ))}
-      </ul>
+      </div>
     </main>
   );
 }
