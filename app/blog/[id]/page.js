@@ -1,24 +1,93 @@
+// // app/blog/[id]/page.js
+// import blogData from '@/data/blogData.json';
+// import { notFound } from 'next/navigation';
+// import Image from 'next/image';
+// 
+// export async function generateStaticParams() {
+//   return blogData.map((post) => ({ id: post.id }));
+// }
+// 
+// export default async function BlogPostPage(props) {
+//   const { id } = props.params;
+//   const post = blogData.find((p) => p.id === id);
+//   if (!post) return notFound();
+// 
+//   return (
+//     <main className="py-5" style={{ background: '#f8f9fa' }}>
+//       <div className="container">
+//         <article className="bg-white p-4 p-md-5 rounded-4 shadow-sm mx-auto" style={{ maxWidth: '250px' }}>
+//           <h1 className="mb-3 fw-bold">{post.title}</h1>
+//           <p className="text-muted small mb-4">
+//             {new Date(post.created_at).toLocaleDateString()} by {post.user?.first_name}
+//           </p>
+// 
+//           <div className="ratio ratio-16x9 rounded-3 overflow-hidden mb-4">
+//             <Image
+//               src={post.featured_image}
+//               alt={post.title}
+//               fill
+//               sizes="100vw"
+//               style={{ objectFit: 'cover' }}
+//             />
+//           </div>
+// 
+//           <div
+//             className="blog-content"
+//             dangerouslySetInnerHTML={{ __html: post.main_content }}
+//             style={{ fontSize: '1.1rem', lineHeight: 1.8, color: '#444' }}
+//           />
+//         </article>
+//       </div>
+//     </main>
+//   );
+// }
+
+
 // app/blog/[id]/page.js
 import blogData from '@/data/blogData.json';
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 
 export async function generateStaticParams() {
-  return blogData.map((post) => ({
-    id: post.id,
-  }));
+  return blogData.map((post) => ({ id: post.id }));
 }
 
-export default async function BlogPostPage({ params }) {
-  const { id } = params;
-
+export default async function BlogPostPage(props) {
+  const { id } = props.params;
   const post = blogData.find((p) => p.id === id);
-
   if (!post) return notFound();
 
   return (
-    <main style={{ padding: '2rem' }}>
-      <h1>{post.title}</h1>
-      <p>{post.summary}</p>
+    <main className="py-5" style={{ background: '#f8f9fa' }}>
+      <div className="container">
+        <article className="bg-white p-4 p-md-5 rounded-4 shadow-sm mx-auto"
+        style={{ 
+          maxWidth: '1000px',
+          width: '100%',
+        }}>
+          <h1 className="mb-3 fw-bold">{post.title}</h1>
+          <p className="text-muted small mb-4">
+            {new Date(post.created_at).toLocaleDateString()} by {post.user?.first_name}
+          </p>
+
+          <div className="ratio ratio-16x9 rounded-3 overflow-hidden mb-4">
+            <Image
+              src={post.featured_image}
+              alt={post.title}
+              fill
+              sizes="100vw"
+              style={{ objectFit: 'cover' }}
+            />
+          </div>
+
+          <div
+            className="blog-content"
+            dangerouslySetInnerHTML={{ __html: post.main_content }}
+            style={{ fontSize: '1.1rem', lineHeight: 1.8, color: '#444' }}
+          />
+        </article>
+      </div>
     </main>
   );
 }
+
