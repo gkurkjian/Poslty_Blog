@@ -8,7 +8,7 @@ export async function generateStaticParams() {
   return blogData.map((post) => ({ id: post.id }));
 }
 
-export default async function BlogPostPage(props) {
+export default function BlogPostPage(props) {
   const { id } = props.params;
   const post = blogData.find((p) => p.id === id);
   if (!post) return notFound();
