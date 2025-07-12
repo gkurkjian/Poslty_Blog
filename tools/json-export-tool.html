@@ -11,7 +11,7 @@
       async function downloadJSON() {
         const res = await fetch("https://jsonfakery.com/blogs");
         const allPosts = await res.json();
-        const first15 = allPosts.slice(0, 15);
+        const first15 = allPosts.slice(0, 100);
         const blob = new Blob([JSON.stringify(first15, null, 2)], { type: "application/json" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
