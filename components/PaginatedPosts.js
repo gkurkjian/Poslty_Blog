@@ -2,7 +2,7 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
-import BlogCard from './BlogCard';
+import BlogCard from './BlogCard'; // ✅ Make sure this is imported
 
 const POSTS_PER_PAGE = 6;
 

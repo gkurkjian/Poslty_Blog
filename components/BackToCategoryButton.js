@@ -18,15 +18,12 @@ export default function BackToCategoryButton() {
   };
 
   return (
-    <div
-      className="mx-auto mb-4 px-3"
-      style={{
-        maxWidth: '1030px',
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'flex-start',
-      }}
-    >
+    <div className="mx-auto mb-4 px-3" style={{
+      maxWidth: '1030px',
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'flex-start',
+    }}>
       <button
         onClick={handleBack}
         className="btn btn-light border shadow-sm"
