@@ -9,8 +9,8 @@ export async function generateStaticParams() {
   return blogData.map((post) => ({ id: post.id }));
 }
 
-export default function BlogPostPage(props) {
-  const { id } = props.params;
+export default async function BlogPostPage(props) {  // made async function
+  const { id } = await props.params;  // await to dynamic API
   const post = blogData.find((p) => p.id === id);
   if (!post) return notFound();
 
