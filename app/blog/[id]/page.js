@@ -3,6 +3,7 @@ import blogData from '@/data/blogData.json';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import BlogAuthor from '@/components/BlogAuthor';
+import BackToCategoryButton from '@/components/BackToCategoryButton';
 
 export async function generateStaticParams() {
   return blogData.map((post) => ({ id: post.id }));
@@ -16,6 +17,10 @@ export default function BlogPostPage(props) {
   return (
     <main className="py-5" style={{ background: '#f8f9fa' }}>
       <div className="container">
+
+        {/* Back to Category Button */}
+        <BackToCategoryButton />
+        
         <article className="bg-white p-4 p-md-5 rounded-4 shadow-sm mx-auto"
         style={{ 
           maxWidth: '1000px',
