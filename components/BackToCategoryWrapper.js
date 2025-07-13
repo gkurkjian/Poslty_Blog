@@ -1,20 +1,12 @@
-// components/PaginatedPostsWrapper.js
 'use client';
 
-import { useSearchParams } from 'next/navigation';
-import PaginatedPosts from './PaginatedPosts';
+import { Suspense } from 'react';
+import BackToCategoryButton from './BackToCategoryButton';
 
-export default function PaginatedPostsWrapper({ allPosts }) {
-  const searchParams = useSearchParams();
-  const category = (searchParams.get('category') || 'all').toLowerCase();
-
-  const filteredPosts =
-    category === 'all'
-      ? allPosts
-      : allPosts.filter(
-          (post) =>
-            (post.category || 'Uncategorized').toLowerCase() === category
-        );
-
-  return <PaginatedPosts posts={filteredPosts} />;
+export default function BackToCategoryWrapper() {
+  return (
+    <Suspense fallback={null}>
+      <BackToCategoryButton />
+    </Suspense>
+  );
 }
