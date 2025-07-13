@@ -2,7 +2,7 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
-import BlogCard from './BlogCard'; // ✅ Make sure this is imported
+import BlogCard from './BlogCard';
 
 const POSTS_PER_PAGE = 6;
 
@@ -19,13 +19,16 @@ export default function PaginatedPosts({ posts = [] }) {
   return (
     <>
       <div className="row">
-        {paginatedPosts.map(post => (
+        {paginatedPosts.map((post) => (
           <div className="col-md-4 mb-4" key={post.id}>
             <BlogCard post={post} />
           </div>
         ))}
       </div>
-      <Pagination current={page} totalPages={totalPages} />
+
+      {totalPages > 1 && (
+        <Pagination current={page} totalPages={totalPages} />
+      )}
     </>
   );
 }
@@ -36,7 +39,7 @@ function Pagination({ current, totalPages }) {
   return (
     <nav className="d-flex justify-content-center mt-4">
       <ul className="pagination">
-        {pages.map(p => (
+        {pages.map((p) => (
           <li key={p} className={`page-item ${p === current ? 'active' : ''}`}>
             <a className="page-link" href={`/?page=${p}`}>
               {p}
