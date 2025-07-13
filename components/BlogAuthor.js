@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export default function BlogAuthor ({ user, date }) {
+export default function BlogAuthor ({ user }) {
     return (
                 <div className="d-flex align-items-center gap-2 mb-2 px-3 pt-3">
         <Image
@@ -12,7 +12,7 @@ export default function BlogAuthor ({ user, date }) {
         />
         <span className="text-muted small">
             <strong>{user?.first_name} {user?.last_name}</strong> | Published on {' '} 
-            {new Date(date?.created_at).toLocaleDateString()}
+            {new Date(user?.created_at).toLocaleDateString()}
         </span>
         </div>
     )

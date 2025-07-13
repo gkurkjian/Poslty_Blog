@@ -35,7 +35,7 @@ export default function BlogCard({ post, showButton = true, showContent = false 
         />
         )}
 
-        <BlogAuthor user={post?.user} date={post.created_at} />
+        <BlogAuthor user={post?.user} date={post?.created_at} />
 
 
     </div>
